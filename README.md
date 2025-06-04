@@ -18,11 +18,11 @@ except:
 #
 def ModifyWorkspace():
     # Try to find the tool set containing an existing tool
-    tsMyPlugin = we.GetToolsetPath('Tool Sets', 'ExistingPlugin')
+    tsExistingPlugin = we.GetToolsetPath('Tool Sets', 'ExistingPlugin')
 
     # If found, set the install path for MyPluginTool to the tool set
-    if (tsMyPlugin != ''):
-        addPath = tsMyPlugin
+    if (tsExistingPlugin != ''):
+        addPath = tsExistingPlugin
         ok = True
     # Otherwise, ask user so select an existing tool set
     else:
