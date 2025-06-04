@@ -4,6 +4,10 @@ Include in the install package, and include relative to install.py
 
 Example usage:
 ```python
+# Adds a tool along side an existing tool if found, or a user-selected tool set if not
+
+# import the helper module
+# the try/except allows looking in the install package first, then in your python paths so that you can run from the Run Script... menu
 try:
     from . import workspace_edit as we
 except:
@@ -13,14 +17,14 @@ except:
 # Modify this function to build the workspace for each install package
 #
 def ModifyWorkspace():
-    # Check if MyPlugin TS exists
-    tsMyPlugin = we.GetToolsetPath('Tool Sets', 'MyPlugin')
+    # Try to find the tool set containing an existing tool
+    tsMyPlugin = we.GetToolsetPath('Tool Sets', 'ExistingPlugin')
 
-    # If so, add to TS
+    # If found, set the install path for MyPluginTool to the tool set
     if (tsMyPlugin != ''):
         addPath = tsMyPlugin
         ok = True
-    # Otherwise, ask user for TS
+    # Otherwise, ask user so select an existing tool set
     else:
         ok, addPath = we.PickPalette()
     if ok:
